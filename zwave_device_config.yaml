@@ -1,0 +1,36 @@
+sensor.greenwave_reality_inc_powernode_6_port_power_5:
+  ignored: false
+  polling_intensity: 10
+switch.greenwave_reality_inc_powernode_6_port_switch:
+  ignored: false
+  polling_intensity: 60
+switch.greenwave_reality_inc_powernode_6_port_switch_2:
+  ignored: false
+  polling_intensity: 60
+switch.greenwave_reality_inc_powernode_6_port_switch_3:
+  ignored: false
+  polling_intensity: 60
+switch.greenwave_reality_inc_powernode_6_port_switch_4:
+  ignored: false
+  polling_intensity: 60
+switch.greenwave_reality_inc_powernode_6_port_switch_5:
+  ignored: false
+  polling_intensity: 60
+switch.greenwave_reality_inc_powernode_6_port_switch_6:
+  ignored: false
+  polling_intensity: 60
+sensor.greenwave_reality_inc_powernode_6_port_power_6:
+  ignored: false
+  polling_intensity: 10
+sensor.greenwave_reality_inc_powernode_6_port_power_4:
+  ignored: false
+  polling_intensity: 10
+sensor.greenwave_reality_inc_powernode_6_port_power_3:
+  ignored: false
+  polling_intensity: 10
+sensor.greenwave_reality_inc_powernode_6_port_power_2:
+  ignored: false
+  polling_intensity: 10
+sensor.greenwave_reality_inc_powernode_6_port_power:
+  ignored: false
+  polling_intensity: 10

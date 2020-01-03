@@ -1,0 +1,58 @@
+#These numbers need a LOT of work. Right now GPS is king. 
+
+- platform: 'bayesian'
+  prior: 0.6
+  name: 'Brett Home'
+  probability_threshold: 0.65
+  observations:
+    - entity_id: 'device_tracker.bretts_iphone'
+      prob_given_true: 0.85
+      platform: "state"
+      to_state: "home"
+    - entity_id: 'device_tracker.bretts_iphone_wifi'
+      prob_given_true: 0.85
+      prob_given_false: 0.4
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.brettsaplewatch'
+      prob_given_true: 0.6
+      prob_given_false: 0.3
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'input_boolean.motorcyle_tracker'
+      prob_given_true: 0.05
+      prob_given_false: 0.95
+      platform: 'state'
+      to_state: 'off'
+        
+        
+- platform: 'bayesian'
+  prior: 0.65
+  name: 'Courtney Home'
+  probability_threshold: 0.79
+  observations:
+    - entity_id: 'device_tracker.courtney_iphone_wifi'
+      prob_given_true: 0.9
+      prob_given_false: 0.3
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.courtneplewatch'
+      prob_given_true: 0.9
+      prob_given_false: 0.1
+      platform: 'state'
+      to_state: 'home'
+
+
+#Why have a bayesian sensor that tracks only one input_boolean? 
+#Future proofing! When my system can tell when devices are connected to a guest wifi network
+#Or other inputs I can use to guess when guests are over
+- platform: 'bayesian'
+  prior: 0.05
+  name: 'Guests Present'
+  probability_threshold: 0.90
+  observations:
+    - entity_id: 'input_boolean.guestmode'
+      prob_given_true: 1.0
+      prob_given_false: 0.0
+      platform: 'state'
+      to_state: 'on' 

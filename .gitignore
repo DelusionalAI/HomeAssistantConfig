@@ -1,0 +1,40 @@
+# Generic ignores
+*.log
+*.db
+*.db-shm
+*.db-wal
+*.pyc
+._*
+__pycache__
+
+# Directory (contents) ignores
+.cloud
+.storage
+deps
+node-red
+#Until I figure out how to secure Node-Red Secerts? Its disabled
+tts
+www
+
+# Specific file ignores
+.homekit.state
+.uuid
+ip_bans.yaml
+known_devices.yaml
+options.xml
+OZW_Log.txt
+pyozw.sqlite
+secrets.yaml
+zwcfg_*
+zwscene.xml
+remote.broadcom_commands
+
+# ESPHome ignores
+esphome/secrets.yaml
+esphome/**/
+
+# Ignore files created by IDE's
+.vscode
+
+# Specific keeps
+!.gitkeep

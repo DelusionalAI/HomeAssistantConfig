@@ -1,0 +1,86 @@
+substitutions:
+  device_name: laundry_room_washer_plug
+  friendly_name: Washer Plug
+
+esphome:
+  name: ${device_name}
+  platform: ESP8266
+  board: esp01_1m
+
+<<: !include standard_config.yml
+
+status_led:
+  pin:
+    number: GPIO02   # Red LED
+    inverted: True
+
+sensor:
+  # Power measuring sensor
+  - platform: hlw8012
+    sel_pin:
+      number: GPIO12
+      inverted: True
+    cf_pin: GPIO04
+    cf1_pin: GPIO05
+    current:
+      name: ${friendly_name} Current
+      filters:
+      - calibrate_linear:
+        - 0.27810 -> 0.165
+        - 1.0 -> 0.5
+    voltage:
+      name: ${friendly_name} Voltage
+    power:
+      name: ${friendly_name} Power
+      id: power
+      filters:
+      - calibrate_linear:
+        - 32.4 -> 17.5
+        - 114.0 -> 60
+    voltage_divider: 1008     # default 2351
+    update_interval: 10s
+    
+  # Sum power readings over the day
+  - platform: total_daily_energy
+    name: ${friendly_name} Total Daily Energy
+    power_id: power
+    filters:
+      - multiply: 0.001   # convert Wh to kWh
+    unit_of_measurement: kWh
+
+  - platform: uptime
+    name: ${friendly_name} Uptime
+    
+  - platform: wifi_signal
+    name: ${friendly_name} Wifi Signal
+    update_interval: 60s
+    
+switch:
+  - platform: gpio
+    id: green_led #I hope
+    pin:
+      number: GPIO16
+      inverted: True
+    restore_mode: ALWAYS_ON
+    
+  - platform: gpio
+    pin: GPIO14
+    id: relay
+    name: ${friendly_name} Relay
+    # Tie Green LED to relay
+    on_turn_on:
+    - switch.turn_on: green_led
+    on_turn_off:
+    - switch.turn_off: green_led
+    restore_mode: ALWAYS_ON
+    
+binary_sensor:
+  - platform: gpio
+    pin: GPIO00
+    id: button
+    name: ${friendly_name} Button
+    on_press:
+      - switch.toggle: relay
+    internal: True
+    
+# GIPO Pins pulled from https://templates.blakadder.com/stitch_27937.html

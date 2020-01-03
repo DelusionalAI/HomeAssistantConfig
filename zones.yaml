@@ -1,0 +1,17 @@
+- name: !secret brett_work_1_name
+  latitude: !secret brett_work_1_latitude
+  longitude: !secret brett_work_1_longitude
+  radius: 200
+  icon: mdi:briefcase
+  
+- name: !secret brett_work_2_name
+  latitude: !secret brett_work_2_latitude
+  longitude: !secret brett_work_2_longitude
+  radius: 120
+  icon: mdi:briefcase
+  
+- name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  radius: 75
+  icon: mdi:home

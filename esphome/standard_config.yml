@@ -1,0 +1,39 @@
+## Settings that should be on all ESPHome Devices.
+
+wifi:
+  ssid: !secret not_ssid
+  password: !secret not_password
+  fast_connect: true
+#    manual_ip:
+#     static_ip: ${ip_address}
+#     gateway: !secret not_gateway
+#     subnet: !secret not_subnet
+#     dns1: !secret not_dns
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: ${friendly_name}_AP
+    password: !secret esp_ap_password
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+    password: !secret esp_api_password
+
+ota:
+    password: !secret esp_ota_password 
+    
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+    
+text_sensor:  
+  - platform: version
+    name: ${friendly_name} ESPhome Version
+  - platform: wifi_info
+    ip_address:
+      name: ${friendly_name} IP

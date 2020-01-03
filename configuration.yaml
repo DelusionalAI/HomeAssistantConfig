@@ -1,0 +1,211 @@
+#Welcome to my config file. Its an ugly mess, but will be cleaned up Someday.
+
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret home_elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Chicago
+  # Customization file
+  customize: !include customize.yaml
+
+zone: !include zones.yaml
+
+#Not sure the ssl stuff needs to be in secret, however there is no harm in it.
+http:
+  base_url: !secret http_base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  ip_ban_enabled: true
+  login_attempts_threshold: 10
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+#Enable WoL
+wake_on_lan:
+
+switch:
+  - platform: wake_on_lan
+    name: "Desktop"
+    host: !secret WOL_1_host
+    mac: !secret WOL_1_mac
+    # https://github.com/home-assistant/home-assistant/pull/28830
+    # mac_address: !secret WOL_1_mac
+
+# I currently record very few things and to not murder my SD card
+# Once I switch to a proper NUC I'll save move to another DB
+recorder:
+  purge_keep_days: 5
+  include:
+    domains:
+      - device_tracker
+      - updater
+      
+weather:
+  - platform: darksky
+    api_key: !secret dark_sky_api
+    
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+
+group: !include groups.yaml
+script: !include scripts.yaml
+binary_sensor: !include binary_sensor.yaml
+
+panel_iframe:
+  router:
+    title: 'OctoPi'
+    url: !secret ocotprint_url
+    icon: mdi:printer-3d-nozzle
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  sensors:
+    monitored_conditions:
+     - 'eta'
+  binary_sensors:
+    monitored_conditions:
+     - 'motion_detected'
+     - 'person_detected'
+     - 'away'
+    
+mobile_app:
+
+discovery:
+    ignore:
+    - google_cast
+    - octoprint
+    - igd #Disabled uPnP Discovery. Not well Documented.
+
+unifi:
+  controllers:
+    - host: unifi
+      site: Default
+      ssid_filter:
+        - !secret main_ssid
+
+octoprint:
+  host: !secret ocotprint_hostname
+  api_key: !secret ocotprint_api
+  name: Prusia i3 MK2.5
+  number_of_tools: 1
+  bed: true
+  
+cloud:
+  google_actions:
+    filter:
+      include_domains:
+       - light
+       - switch
+       - fan
+       - lock
+      include_entities:
+       - input_boolean.sleepmode
+       
+homekit:
+  auto_start: false
+  filter:
+    include_domains:
+      - light
+      - fan
+      - climate
+    include_entities:
+      - lock.yale_key_free_touchscreen_deadbolt_yrd446
+      - input_boolean.sleepmode
+      - switch.bedroom_light
+      - switch.stairway_light
+  entity_config:
+    lock.yale_key_free_touchscreen_deadbolt_yrd446:
+      linked_battery_sensor: sensor.assa_abloy_yale_key_free_touchscreen_deadbolt_yrd446_battery_level
+      low_battery_threshold: 20
+      
+#Makes sure Zwave is online before Homekit is
+automation:
+  - alias: 'Start HomeKit'
+    trigger:
+      - platform: event
+        event_type: zwave.network_ready
+      - platform: event
+        event_type: zwave.network_complete
+      - platform: event
+        event_type: zwave.network_complete_some_dead
+    action:
+      - service: homekit.start
+  
+#Booleans used for Status/Overrides
+input_boolean:
+   home_occupied:
+    name: Is anybody home?
+   sleepmode:
+    name: Sleep mode
+   guestmode:
+    name: Guest Override
+   motorcyle_tracker:
+    name: Motorcycle home
+   rikka_override:
+    name: Rikka Home Override
+    
+system_health:
+
+panel_custom:
+  - name: zwavegraph2
+    sidebar_title: Z-Wave Graph
+    sidebar_icon: mdi:access-point-network
+    url_path: zwave
+
+logger:
+ default: error
+ logs: 
+    lock: info
+
+media_player: !include media_player.yaml
+
+
+remote:
+  - platform: broadlink
+    host: !secret broadlink_host
+    mac: !secret broadlink_mac
+    
+#Currently in testing phase until I feel it can replace the real system. 
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: !secret alarm_code
+    pending_time: 30
+    delay_time: 20
+    trigger_time: 4
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0

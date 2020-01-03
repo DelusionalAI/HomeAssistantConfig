@@ -1,0 +1,6 @@
+switches_all_lights:
+    name: switches_all_lights
+    view: false
+    entities:
+      - switch.bedroom_light
+      - switch.stairway_light
