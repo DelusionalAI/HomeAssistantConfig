@@ -4,3 +4,20 @@ switches_all_lights:
     entities:
       - switch.bedroom_light
       - switch.stairway_light
+      
+switches_greenwave:
+    name: switches_greenwave
+    view: false
+      - switch.greenwave_reality_inc_powernode_6_port_switch
+      - switch.greenwave_reality_inc_powernode_6_port_switch_2
+      - switch.greenwave_reality_inc_powernode_6_port_switch_3
+      - switch.greenwave_reality_inc_powernode_6_port_switch_4
+      - switch.greenwave_reality_inc_powernode_6_port_switch_5
+      - switch.greenwave_reality_inc_powernode_6_port_switch_6
+      
+switches_entertainment:
+    name: swtiches_entertainment
+    view: false
+        - switch.greenwave_reality_inc_powernode_6_port_switch_5
+        - switch.greenwave_reality_inc_powernode_6_port_switch_4
+        - switch.greenwave_reality_inc_powernode_6_port_switch
