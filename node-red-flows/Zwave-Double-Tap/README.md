@@ -1,1 +1,1 @@
-![Living-Room](node-red-flows/Zwave-Double-Tap/Living-Room-Double-Tab.png?raw=true "Living Room")
+![Living Room](./Living-Room-Double-Tap.png?raw=true)

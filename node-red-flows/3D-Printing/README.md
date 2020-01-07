@@ -1,1 +1,1 @@
-![Finished Printing](node-red-flows/3D-Printing/3D-Printer-Finished.png?raw=true "Finished Printing")
+![Finished Printing](./3D-Printer-Finished.png?raw=true)

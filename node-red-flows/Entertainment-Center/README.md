@@ -1,1 +1,1 @@
-![Entertainment-Center](node-red-flows/Entertainment-Center/Entertainment-Center.png?raw=true "Entertainment-Center")
+![Entertainment-Center](./Entertainment-Center.png?raw=true)

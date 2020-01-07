@@ -1,1 +1,1 @@
-![Battery Check](node-red-flows/Battery-Check/Battery-Check.png?raw=true "Battery Check")
+![Battery Check](./Battery-Check.png?raw=true)

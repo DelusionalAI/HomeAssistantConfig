@@ -1,1 +1,1 @@
-![Stairway-Lights](node-red-flows/Lighting-Automation/Stairway-Lights.png?raw=true "Stairway-Lights")
+![Stairway-Lights](./Stairway-Lights.png?raw=true)
