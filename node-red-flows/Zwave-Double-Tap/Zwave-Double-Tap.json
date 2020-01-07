@@ -1,0 +1,369 @@
+[
+    {
+        "id": "1c805e71.efbaea",
+        "type": "tab",
+        "label": "Zwave Double Tap",
+        "disabled": false,
+        "info": "What to do when a zwave double tap happens.\n\nZwave Device (GE/Jasco Products) need to have zwave contoller added to their \"Group 3 - Basic Double tap\" in order for HA to be aware of the event. "
+    },
+    {
+        "id": "6df8a5f7.ad755c",
+        "type": "switch",
+        "z": "1c805e71.efbaea",
+        "name": "Which Entity?",
+        "property": "payload.entity_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "zwave.jasco_products_14294_in_wall_smart_dimmer",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "zwave.jasco_products_14287_fan_control_switch",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "7424a56f.286e9c"
+            ],
+            [
+                "7424a56f.286e9c"
+            ]
+        ],
+        "outputLabels": [
+            "Living Room Light",
+            "Living Room Fan"
+        ]
+    },
+    {
+        "id": "7424a56f.286e9c",
+        "type": "switch",
+        "z": "1c805e71.efbaea",
+        "name": "Double Tap On or Off",
+        "property": "payload.event.basic_level",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "255",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 580,
+        "y": 220,
+        "wires": [
+            [
+                "6e34f3d.040380c",
+                "1ed08101.3ff7f7",
+                "47b5ffa3.998de"
+            ],
+            [
+                "7cc8c936.76b81",
+                "95bba87c.48ac08",
+                "9e5ffe98.fd29f8",
+                "5f1f3950.346e18"
+            ]
+        ],
+        "outputLabels": [
+            "On",
+            "Off"
+        ]
+    },
+    {
+        "id": "7cc8c936.76b81",
+        "type": "api-call-service",
+        "z": "1c805e71.efbaea",
+        "name": "Turn off Living Room Light",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.light_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 360,
+        "wires": [
+            [
+                "c1ce8b53.9240e8"
+            ]
+        ]
+    },
+    {
+        "id": "95bba87c.48ac08",
+        "type": "api-call-service",
+        "z": "1c805e71.efbaea",
+        "name": "Turn off Living Room Fan",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "fan",
+        "service": "turn_off",
+        "entityId": "fan.living_room_fan",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 870,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e5ffe98.fd29f8",
+        "type": "api-call-service",
+        "z": "1c805e71.efbaea",
+        "name": "Turn off Living Room TV",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "media_player",
+        "service": "turn_off",
+        "entityId": "media_player.living_room_tv",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 870,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6e34f3d.040380c",
+        "type": "api-call-service",
+        "z": "1c805e71.efbaea",
+        "name": "Turn On Living Room Light",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.light_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 880,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1ed08101.3ff7f7",
+        "type": "api-call-service",
+        "z": "1c805e71.efbaea",
+        "name": "Turn on Living Room Fan",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "fan",
+        "service": "set_speed",
+        "entityId": "fan.living_room_fan",
+        "data": "{\"speed\":\"low\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 870,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dccf2336.20e438",
+        "type": "server-events",
+        "z": "1c805e71.efbaea",
+        "name": "Monitor for Double Tap",
+        "server": "29555221.3a31ae",
+        "event_type": "zwave.node_event",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "6df8a5f7.ad755c"
+            ]
+        ]
+    },
+    {
+        "id": "5f1f3950.346e18",
+        "type": "api-call-service",
+        "z": "1c805e71.efbaea",
+        "name": "Turn Audio Off",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "remote",
+        "service": "send_command",
+        "entityId": "remote.broadlink",
+        "data": "{\"entity_id\":\"remote.broadlink\",\"device\":\"audio\",\"command\":\"Turn off\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 840,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca532424.a7bc7",
+        "type": "comment",
+        "z": "1c805e71.efbaea",
+        "name": "The Doulbe tap event only says it happens, not where it happened or if it was On or Off",
+        "info": "Currenlty both Z-Wave devices that I monitor do the same thing, but that will change as things expand",
+        "x": 360,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "44c70a1a.359b84",
+        "type": "api-call-service",
+        "z": "1c805e71.efbaea",
+        "name": "Refresh Light State",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "zwave",
+        "service": "refresh_entity",
+        "entityId": "light.light_room",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1250,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1ce8b53.9240e8",
+        "type": "delay",
+        "z": "1c805e71.efbaea",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1080,
+        "y": 360,
+        "wires": [
+            [
+                "44c70a1a.359b84"
+            ]
+        ]
+    },
+    {
+        "id": "b767bb79.b2fcf",
+        "type": "comment",
+        "z": "1c805e71.efbaea",
+        "name": "Fix reporting issue",
+        "info": "Because the light dims to off, Home Assistant sometimes reports the light as still on, but really low. This updates the light to the correct state.",
+        "x": 1450,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "23f8e028.270348",
+        "type": "comment",
+        "z": "1c805e71.efbaea",
+        "name": "Double Tap Down Turns off everything in Living Room",
+        "info": "",
+        "x": 960,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e344e2b.1da4f2",
+        "type": "comment",
+        "z": "1c805e71.efbaea",
+        "name": "Double Tap Up Turns on Lights, Fans, and Restores power to EC if needed",
+        "info": "",
+        "x": 1030,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "47b5ffa3.998de",
+        "type": "api-call-service",
+        "z": "1c805e71.efbaea",
+        "name": "Restore power to Entertainment Center",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "group.switches_greenwave",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 920,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29555221.3a31ae",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    }
+]

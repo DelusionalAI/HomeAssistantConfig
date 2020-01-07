@@ -1,0 +1,308 @@
+[
+    {
+        "id": "840d20cd.af434",
+        "type": "tab",
+        "label": "Entertainment Center",
+        "disabled": false,
+        "info": "Right now, just automatily turns on/off and sound system as needed, and then sets it to the right input.\n\nLuckly my sound system has a decitaed on and a decitaed off button on the remote, so I don't have to worry about state tracking or sending a toggle power command to a unit thats in a different state than expected. "
+    },
+    {
+        "id": "4f4df9a4.6e81e8",
+        "type": "server-state-changed",
+        "z": "840d20cd.af434",
+        "name": "TV Turned On/Off",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.living_room_tv_v",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 130,
+        "y": 60,
+        "wires": [
+            [
+                "b0f2314d.8fd52"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b0f2314d.8fd52",
+        "type": "api-call-service",
+        "z": "840d20cd.af434",
+        "name": "Turn Audio On",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "remote",
+        "service": "send_command",
+        "entityId": "remote.broadlink",
+        "data": "{\"entity_id\":\"remote.broadlink\",\"device\":\"audio\",\"command\":\"Turn on\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 340,
+        "y": 60,
+        "wires": [
+            [
+                "aa92b5c2.74d158"
+            ]
+        ]
+    },
+    {
+        "id": "b763dcbc.ad043",
+        "type": "api-call-service",
+        "z": "840d20cd.af434",
+        "name": "Set Input to TV",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "remote",
+        "service": "send_command",
+        "entityId": "remote.broadlink",
+        "data": "{\"entity_id\":\"remote.broadlink\",\"device\":\"audio\",\"command\":\"input_tv\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 700,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa92b5c2.74d158",
+        "type": "delay",
+        "z": "840d20cd.af434",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 520,
+        "y": 60,
+        "wires": [
+            [
+                "b763dcbc.ad043"
+            ]
+        ]
+    },
+    {
+        "id": "ad3d1f77.ff4e9",
+        "type": "server-state-changed",
+        "z": "840d20cd.af434",
+        "name": "Chromecast turn on",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "media_player.living_room_speaker",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "playing",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "61b84d75.b697f4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "61b84d75.b697f4",
+        "type": "api-call-service",
+        "z": "840d20cd.af434",
+        "name": "Turn Audio On",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "remote",
+        "service": "send_command",
+        "entityId": "remote.broadlink",
+        "data": "{\"entity_id\":\"remote.broadlink\",\"device\":\"audio\",\"command\":\"Turn on\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "894d50c3.c0b51"
+            ]
+        ]
+    },
+    {
+        "id": "da6e2112.c6148",
+        "type": "api-call-service",
+        "z": "840d20cd.af434",
+        "name": "Set Input to Chromecast",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "remote",
+        "service": "send_command",
+        "entityId": "remote.broadlink",
+        "data": "{\"entity_id\":\"remote.broadlink\",\"device\":\"audio\",\"command\":\"input_chromecast\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 730,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "894d50c3.c0b51",
+        "type": "delay",
+        "z": "840d20cd.af434",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 520,
+        "y": 120,
+        "wires": [
+            [
+                "da6e2112.c6148"
+            ]
+        ]
+    },
+    {
+        "id": "b72f1c1c.64e24",
+        "type": "trigger-state",
+        "z": "840d20cd.af434",
+        "name": "All Off",
+        "server": "29555221.3a31ae",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityid": "media_player.living_room_speaker|media_player.living_room_tv_v",
+        "entityidfiltertype": "regex",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "yucc52u89e",
+                "targetType": "entity_id",
+                "targetValue": "media_player.living_room_tv_v",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "off"
+            },
+            {
+                "id": "7nfqe3teuh7",
+                "targetType": "entity_id",
+                "targetValue": "media_player.living_room_speaker",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "off"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "str",
+        "x": 90,
+        "y": 180,
+        "wires": [
+            [
+                "f1467636.f38e28"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f1467636.f38e28",
+        "type": "api-call-service",
+        "z": "840d20cd.af434",
+        "name": "Turn Audio Off",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "remote",
+        "service": "send_command",
+        "entityId": "remote.broadlink",
+        "data": "{\"entity_id\":\"remote.broadlink\",\"device\":\"audio\",\"command\":\"Turn off\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 340,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29555221.3a31ae",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    }
+]

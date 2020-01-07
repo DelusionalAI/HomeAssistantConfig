@@ -1,0 +1,101 @@
+[
+    {
+        "id": "866b0528.84c148",
+        "type": "tab",
+        "label": "Battery Check",
+        "disabled": false,
+        "info": "Simple Battery level Flow.\n\nOnly in place until my full node-red notify system is finished"
+    },
+    {
+        "id": "ab0b25e2.cb5708",
+        "type": "api-call-service",
+        "z": "866b0528.84c148",
+        "name": "Let Brett Know",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_bretts_iphone",
+        "entityId": "",
+        "data": "{\"message\":\"{{data.attributes.friendly_name}} is at {{payload}}%.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 700,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9d7716ee.24dc38",
+        "type": "server-state-changed",
+        "z": "866b0528.84c148",
+        "name": "Has Brett Arrived/Left",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "entityidfilter": "binary_sensor.brett_home",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "6050270d.32c1d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6050270d.32c1d",
+        "type": "api-current-state",
+        "z": "866b0528.84c148",
+        "name": "Get Battery Level of Front Door Lock",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "20",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "override_topic": false,
+        "entity_id": "sensor.assa_abloy_yale_key_free_touchscreen_deadbolt_yrd446_battery_level",
+        "state_type": "num",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "ab0b25e2.cb5708"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fdd455ca.369f78",
+        "type": "comment",
+        "z": "866b0528.84c148",
+        "name": "If Lock Battery less than 20% when Brett gets home, let him know",
+        "info": "",
+        "x": 410,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "29555221.3a31ae",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    }
+]

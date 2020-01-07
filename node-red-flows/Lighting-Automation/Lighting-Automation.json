@@ -1,0 +1,136 @@
+[
+    {
+        "id": "c52f29d3.bb7f6",
+        "type": "tab",
+        "label": "Lighting Automation",
+        "disabled": false,
+        "info": "Automations havings to due with lights,\nbut not the mode of the house.\n\nNot a lot here right now, but will add more as motion sensors become a thing. "
+    },
+    {
+        "id": "3dc10b61.1a52f4",
+        "type": "server-state-changed",
+        "z": "c52f29d3.bb7f6",
+        "name": "Stairway light turned on",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "switch.stairway_light",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "c6907dd9.dee85"
+            ],
+            [
+                "82dda931.99e11"
+            ]
+        ],
+        "outputLabels": [
+            "Turned On",
+            "Turned Off"
+        ]
+    },
+    {
+        "id": "c6907dd9.dee85",
+        "type": "stoptimer",
+        "z": "c52f29d3.bb7f6",
+        "duration": "5",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 400,
+        "y": 100,
+        "wires": [
+            [
+                "55e52d12.fa345c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "55e52d12.fa345c",
+        "type": "api-call-service",
+        "z": "c52f29d3.bb7f6",
+        "name": "Turn off Stairway Light",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.stairway_light",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 630,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "82dda931.99e11",
+        "type": "change",
+        "z": "c52f29d3.bb7f6",
+        "name": "STOP timer when light is off",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "STOP",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "c6907dd9.dee85"
+            ]
+        ],
+        "icon": "node-red/alert.svg"
+    },
+    {
+        "id": "a4095981.60947",
+        "type": "comment",
+        "z": "c52f29d3.bb7f6",
+        "name": "Turn off Stairway lights after 5 mins",
+        "info": "We often forget and leave it on.\nStop timer makes it so that it ony turns off after 5 mins of being turned on.",
+        "x": 360,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "29555221.3a31ae",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    }
+]

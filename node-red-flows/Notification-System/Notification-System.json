@@ -1,0 +1,256 @@
+[
+    {
+        "id": "57e8ee7e.7399c8",
+        "type": "tab",
+        "label": "Notification System",
+        "disabled": true,
+        "info": "Currently Not in use. WIP\n\nWhen a nofication that can only be acted on by homeone in the house happens, wait until a few mins after they get home to notify them of the event.\n\nWork in Progress"
+    },
+    {
+        "id": "d051714c.c1f3a",
+        "type": "server-state-changed",
+        "z": "57e8ee7e.7399c8",
+        "name": "Check Battery Level of Front Door",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "entityidfilter": "sensor.assa_abloy_yale_key_free_touchscreen_deadbolt_yrd446_battery_level",
+        "entityidfiltertype": "exact",
+        "outputinitially": true,
+        "state_type": "num",
+        "haltifstate": "20",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 140,
+        "y": 200,
+        "wires": [
+            [
+                "9da966dd.5cbed8"
+            ],
+            []
+        ],
+        "outputLabels": [
+            "Battery is low",
+            "Battery is not low."
+        ]
+    },
+    {
+        "id": "b860ee50.f2b8f8",
+        "type": "debug",
+        "z": "57e8ee7e.7399c8",
+        "name": "Would be sent to phone",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1090,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "4dc1c39d.5d4054",
+        "type": "join",
+        "z": "57e8ee7e.7399c8",
+        "name": "Join messages and wait until Brett is home",
+        "mode": "custom",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "num",
+        "reduceFixup": "",
+        "x": 790,
+        "y": 320,
+        "wires": [
+            [
+                "b860ee50.f2b8f8"
+            ]
+        ]
+    },
+    {
+        "id": "a8d5336.1e763d",
+        "type": "inject",
+        "z": "57e8ee7e.7399c8",
+        "name": "",
+        "topic": "",
+        "payload": "Washing Machine is done",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "6af04c3a.6deac4"
+            ]
+        ]
+    },
+    {
+        "id": "f844618.45c1fa",
+        "type": "inject",
+        "z": "57e8ee7e.7399c8",
+        "name": "",
+        "topic": "",
+        "payload": "Vaccume need's Empting",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "4dc1c39d.5d4054"
+            ]
+        ]
+    },
+    {
+        "id": "4f1aa1e5.abb458",
+        "type": "inject",
+        "z": "57e8ee7e.7399c8",
+        "name": "Brett gets home",
+        "topic": "complete",
+        "payload": " ",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 200,
+        "y": 380,
+        "wires": [
+            [
+                "e1d2adc5.367bd8"
+            ]
+        ]
+    },
+    {
+        "id": "e1d2adc5.367bd8",
+        "type": "change",
+        "z": "57e8ee7e.7399c8",
+        "name": "Send msg.complete to join",
+        "rules": [
+            {
+                "t": "set",
+                "p": "complete",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 380,
+        "wires": [
+            [
+                "4dc1c39d.5d4054",
+                "710165d1.48ef54"
+            ]
+        ]
+    },
+    {
+        "id": "9da966dd.5cbed8",
+        "type": "function",
+        "z": "57e8ee7e.7399c8",
+        "name": "Only allow one message though",
+        "func": "var count = flow.get(\"fds\")\nif (count != 1) {\n    flow.set(\"fds\", 1)\n    msg.payload = \"The \" + msg.data.new_state.attributes.friendly_name + \" is at \" + msg.payload +\"%.\"\n    return msg;\n}\nelse {\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 200,
+        "wires": [
+            [
+                "4dc1c39d.5d4054"
+            ]
+        ]
+    },
+    {
+        "id": "6af04c3a.6deac4",
+        "type": "function",
+        "z": "57e8ee7e.7399c8",
+        "name": "Only allow one message though",
+        "func": "var count = flow.get(\"wms\")\nif (count != 1) {\n    flow.set(\"wms\", 1)\n    return msg;\n}\nelse {\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 260,
+        "wires": [
+            [
+                "4dc1c39d.5d4054"
+            ]
+        ]
+    },
+    {
+        "id": "710165d1.48ef54",
+        "type": "function",
+        "z": "57e8ee7e.7399c8",
+        "name": "Reset Vars",
+        "func": "flow.set(\"wms\", 0)\nflow.set(\"fds\", 0)\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63d9d846.47d51",
+        "type": "comment",
+        "z": "57e8ee7e.7399c8",
+        "name": "Prevent Dulpicates",
+        "info": "If my battery is low, I don't need to learn it was at 20, then 19, then 18, or whatever. Just that its low.\n\nCurrently only sends first state, all other states ignored. So if the batteries in lock where replaced before this system is used.\n\nTODO: Fix with node-red traffic lights? ",
+        "x": 430,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "b44678f1.fd3e",
+        "type": "comment",
+        "z": "57e8ee7e.7399c8",
+        "name": "Prevent Notifcation Spam",
+        "info": "Joins everything into one detailed notifcation, not lots of little ones.",
+        "x": 730,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f164aba7.4f976",
+        "type": "comment",
+        "z": "57e8ee7e.7399c8",
+        "name": "Allow messages to flow again",
+        "info": "",
+        "x": 740,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "29555221.3a31ae",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    }
+]

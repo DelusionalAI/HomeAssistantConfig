@@ -1,0 +1,133 @@
+[
+    {
+        "id": "7680ec7f.56d974",
+        "type": "tab",
+        "label": "3D-Printing",
+        "disabled": false,
+        "info": "Flow of things related to 3D Printing. Really just lets me know if a print Finished/Failed "
+    },
+    {
+        "id": "f446d601.78aed8",
+        "type": "api-current-state",
+        "z": "7680ec7f.56d974",
+        "name": "Did Printer Finish with Error?",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.octoprint_printing_error",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "3894bf8d.e4ef28"
+            ],
+            [
+                "e98089ab.d0a298"
+            ]
+        ],
+        "outputLabels": [
+            "OctoPi Reports Error",
+            "OctoPi Reports Success"
+        ]
+    },
+    {
+        "id": "a1187954.964618",
+        "type": "server-state-changed",
+        "z": "7680ec7f.56d974",
+        "name": "Printing Stoped",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "binary_sensor.octoprint_printing",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [],
+            [
+                "f446d601.78aed8"
+            ]
+        ],
+        "outputLabels": [
+            "Printer Started Printing",
+            "Printer Stopped Printing"
+        ]
+    },
+    {
+        "id": "3894bf8d.e4ef28",
+        "type": "api-call-service",
+        "z": "7680ec7f.56d974",
+        "name": "Notify Brett of Failure",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "service_domain": "notify",
+        "service": "ios_brettsxr",
+        "entityId": "",
+        "data": "{\"message\":\"Something went wrong\",\"title\":\"Print Failed\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 700,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e98089ab.d0a298",
+        "type": "api-call-service",
+        "z": "7680ec7f.56d974",
+        "name": "Notify Brett of Success",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "service_domain": "notify",
+        "service": "ios_brettsxr",
+        "entityId": "",
+        "data": "{\"message\":\"Go look at your print!\",\"title\":\"Print Successful!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 700,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29555221.3a31ae",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    }
+]

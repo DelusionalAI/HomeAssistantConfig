@@ -1,0 +1,935 @@
+[
+    {
+        "id": "7f94785c.d81b2",
+        "type": "tab",
+        "label": "Home-State-Management",
+        "disabled": false,
+        "info": "Sets the house to Home/Away/Sleep mode, and makes\nsome changes based on the mode set."
+    },
+    {
+        "id": "2bc9c053.bbea98",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Turn off Living Room Light",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "group.all_lights",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 480,
+        "y": 560,
+        "wires": [
+            [
+                "134f8167.342927"
+            ]
+        ]
+    },
+    {
+        "id": "58bb7526.7445b4",
+        "type": "api-current-state",
+        "z": "7f94785c.d81b2",
+        "name": "Is Brett Home?",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.brett_home",
+        "state_type": "habool",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 440,
+        "y": 240,
+        "wires": [
+            [],
+            [
+                "bc63d408.010158"
+            ]
+        ],
+        "outputLabels": [
+            "Brett is Home",
+            "Brett is not Home"
+        ]
+    },
+    {
+        "id": "e2558cb4.9eeca",
+        "type": "api-current-state",
+        "z": "7f94785c.d81b2",
+        "name": "Is Courtney Home?",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.courtney_home",
+        "state_type": "habool",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [],
+            [
+                "bc63d408.010158"
+            ]
+        ],
+        "outputLabels": [
+            "Courtney is Home",
+            "Courtney is Not Home"
+        ]
+    },
+    {
+        "id": "a32ee32f.14d4d",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Turn Off Fans",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "service_domain": "fan",
+        "service": "turn_off",
+        "entityId": "group.all_fans",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cff21105.fa5ac",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Tell Nest people are home",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "service_domain": "nest",
+        "service": "set_away_mode",
+        "entityId": "",
+        "data": "{\"away_mode\": \"home\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 480,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ced0cb76.5c734",
+        "type": "server-state-changed",
+        "z": "7f94785c.d81b2",
+        "name": "Is House Occupied",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "entityidfilter": "input_boolean.home_occupied",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 150,
+        "y": 580,
+        "wires": [
+            [
+                "cff21105.fa5ac",
+                "1590f8f9.621e27"
+            ],
+            [
+                "2bc9c053.bbea98",
+                "a32ee32f.14d4d",
+                "3fc26db6.0469c2",
+                "8f655a39.1a02b",
+                "a1c8b0fc.0fcc98",
+                "7ea2ff2.8f46f"
+            ]
+        ],
+        "outputLabels": [
+            "Home is Occupied",
+            "Home is not Occupied"
+        ]
+    },
+    {
+        "id": "3fc26db6.0469c2",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Lock Front Door",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "service_domain": "lock",
+        "service": "lock",
+        "entityId": "lock.yale_key_free_touchscreen_deadbolt_yrd446",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b13cc35e.ffdde",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Set House to Away",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.home_occupied",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 970,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d1f12731.4f1188",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Set House to Home",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "service_domain": "input_boolean",
+        "service": "turn_on",
+        "entityId": "input_boolean.home_occupied",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 450,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "134f8167.342927",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Turn off other lights",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "group.switches_all_lights",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 720,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8f655a39.1a02b",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Notify Brett",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_bretts_iphone",
+        "entityId": "",
+        "data": "{\"message\":\"Everyone has left the house, shutting off the lights.\",\"title\":\"House set to Away\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 430,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f877d1f8.2ce4a8",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Notify Brett",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "notify",
+        "service": "mobile_app_bretts_iphone",
+        "entityId": "",
+        "data": "{\"message\":\"Courtney is Home!\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 430,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "82b6bf7a.f9606",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Turn On Bedroom Fan",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "fan",
+        "service": "turn_on",
+        "entityId": "fan.master_bed_room",
+        "data": "{\"entity_id\":\"fan.master_bed_room\",\"speed\":\"medium\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 420,
+        "y": 1040,
+        "wires": [
+            [
+                "f726668f.ff9f88"
+            ]
+        ]
+    },
+    {
+        "id": "7534ec1a.53e4bc",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Turn off TV",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "service_domain": "media_player",
+        "service": "turn_off",
+        "entityId": "media_player.bedroom_tv",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 790,
+        "y": 1100,
+        "wires": [
+            [
+                "b5b5ec73.7c84"
+            ]
+        ]
+    },
+    {
+        "id": "3795f6a0.1d53b2",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Turn Volume To 4",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.bedroom_tv",
+        "data": "{\"entity_id\":\"media_player.bedroom_tv\",\"volume_level\":\".04\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 410,
+        "y": 1100,
+        "wires": [
+            [
+                "2d2317b7.157fc8"
+            ]
+        ]
+    },
+    {
+        "id": "2d2317b7.157fc8",
+        "type": "stoptimer",
+        "z": "7f94785c.d81b2",
+        "duration": "1",
+        "units": "Hour",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 610,
+        "y": 1100,
+        "wires": [
+            [
+                "7534ec1a.53e4bc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e2c15184.1101b",
+        "type": "server-state-changed",
+        "z": "7f94785c.d81b2",
+        "name": "Sleep Mode Triggered",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "input_boolean.sleepmode",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 160,
+        "y": 1060,
+        "wires": [
+            [
+                "82b6bf7a.f9606",
+                "3795f6a0.1d53b2",
+                "3fc26db6.0469c2",
+                "2bc9c053.bbea98"
+            ],
+            []
+        ],
+        "outputLabels": [
+            "Sleep mode turned on",
+            "Sleep mode turned off"
+        ]
+    },
+    {
+        "id": "f726668f.ff9f88",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Turn off other fans",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "fan",
+        "service": "turn_off",
+        "entityId": "fan.living_room_fan",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 650,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b5b5ec73.7c84",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Reset Sleep mode Trigger",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "input_boolean",
+        "service": "turn_off",
+        "entityId": "input_boolean.sleep_mode",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1020,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bc63d408.010158",
+        "type": "api-current-state",
+        "z": "7f94785c.d81b2",
+        "name": "Guests Present?",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "binary_sensor.guests_present",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 730,
+        "y": 260,
+        "wires": [
+            [],
+            [
+                "b13cc35e.ffdde"
+            ]
+        ],
+        "outputLabels": [
+            "House is in guest mode",
+            "House is not in guest mode"
+        ]
+    },
+    {
+        "id": "b5c77910.f0b508",
+        "type": "server-state-changed",
+        "z": "7f94785c.d81b2",
+        "name": "Has Brett Arrived/Left",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "entityidfilter": "binary_sensor.brett_home",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "d1f12731.4f1188"
+            ],
+            [
+                "e2558cb4.9eeca"
+            ]
+        ],
+        "outputLabels": [
+            "Brett Arrived",
+            "Brett Left"
+        ]
+    },
+    {
+        "id": "c9811363.94db7",
+        "type": "server-state-changed",
+        "z": "7f94785c.d81b2",
+        "name": "Has Courtney Arrived/Left",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "entityidfilter": "binary_sensor.courtney_home",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "habool",
+        "haltifstate": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "f877d1f8.2ce4a8",
+                "d1f12731.4f1188"
+            ],
+            [
+                "58bb7526.7445b4"
+            ]
+        ],
+        "outputLabels": [
+            " Courtney Arrived",
+            " Courtney Left"
+        ]
+    },
+    {
+        "id": "b2c04d0a.a25948",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Set Temp to Away Mode",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_preset_mode",
+        "entityId": "climate.kitchen",
+        "data": "{\"preset_mode\" : \"away\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 690,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a1c8b0fc.0fcc98",
+        "type": "api-current-state",
+        "z": "7f94785c.d81b2",
+        "name": "Is Rikka Home",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "input_boolean.rikka_override",
+        "state_type": "habool",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 440,
+        "y": 800,
+        "wires": [
+            [
+                "b2c04d0a.a25948"
+            ],
+            [
+                "b2753ad0.c621a"
+            ]
+        ]
+    },
+    {
+        "id": "b2753ad0.c621a",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Set Temp to Eco Mode",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_preset_mode",
+        "entityId": "climate.kitchen",
+        "data": "{\"preset_mode\" : \"Away and Eco\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 680,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c15459.df221bc",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Set Temp to Rikka Mode",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_preset_mode",
+        "entityId": "climate.kitchen",
+        "data": "{\"preset_mode\" : \"away\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 470,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a55231d1.801238",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Set Temp to Eco Mode",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "climate",
+        "service": "set_preset_mode",
+        "entityId": "climate.kitchen",
+        "data": "{\"preset_mode\" : \"Away and Eco\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 460,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7485c25.6fa9d8",
+        "type": "trigger-state",
+        "z": "7f94785c.d81b2",
+        "name": "Rikka Not Home -> Home",
+        "server": "29555221.3a31ae",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityid": "input_boolean.rikka_override",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "qkjb0u1mmpl",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "bool",
+                "comparatorValue": "true"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "habool",
+        "x": 170,
+        "y": 1300,
+        "wires": [
+            [
+                "5c15459.df221bc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "584065c6.2b0934",
+        "type": "trigger-state",
+        "z": "7f94785c.d81b2",
+        "name": "Rikka Home -> Not Home",
+        "server": "29555221.3a31ae",
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityid": "input_boolean.rikka_override",
+        "entityidfiltertype": "exact",
+        "debugenabled": false,
+        "constraints": [
+            {
+                "id": "7t6xxe696jo",
+                "targetType": "this_entity",
+                "targetValue": "",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "bool",
+                "comparatorValue": "false"
+            },
+            {
+                "id": "km7frf825oo",
+                "targetType": "entity_id",
+                "targetValue": "input_boolean.home_occupied",
+                "propertyType": "current_state",
+                "propertyValue": "new_state.state",
+                "comparatorType": "is",
+                "comparatorValueDatatype": "str",
+                "comparatorValue": "off"
+            }
+        ],
+        "constraintsmustmatch": "all",
+        "outputs": 2,
+        "customoutputs": [],
+        "outputinitially": false,
+        "state_type": "habool",
+        "x": 170,
+        "y": 1380,
+        "wires": [
+            [
+                "a55231d1.801238"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7ea2ff2.8f46f",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Turn off Entertainment center power",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "group.switches_greenwave",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 510,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1590f8f9.621e27",
+        "type": "api-call-service",
+        "z": "7f94785c.d81b2",
+        "name": "Restore power to Entertainment Center",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "group.switches_entertainment",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 520,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f652f8be.0dedc8",
+        "type": "comment",
+        "z": "7f94785c.d81b2",
+        "name": "If Nobody is home, set house to away",
+        "info": "Guests are currently manually tracked with a boolean in home assistant.",
+        "x": 870,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "91361b91.768898",
+        "type": "comment",
+        "z": "7f94785c.d81b2",
+        "name": "Is someone arrives, set house to home mode",
+        "info": "Old state of the house doesn't matter, just set it to home.\nAlso alert me if its Cournty who came home.",
+        "x": 510,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "dc541c7b.ec0378",
+        "type": "comment",
+        "z": "7f94785c.d81b2",
+        "name": "Tracked by Bayesian sensor",
+        "info": "See /config/binary_sensor.yaml for more details",
+        "x": 160,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "79e0fd3.e997104",
+        "type": "comment",
+        "z": "7f94785c.d81b2",
+        "name": "Managed by Input_boolean in HA",
+        "info": "This is running on an input_boolean in HA rather than a Link in Node-Red so I have better manual overrides if needed. \n\nWhen Arriving, restore power to Entertaiment center Chromecast devices, so they can be cast to. Set temps to home mode.\n\nWhen leaving, turn off all room lights, fans, and Entertainment Center power. Set nest to correct mode dependning on if the dog is home or not. Lock the front door if it wasn't already or some reason. Let Brett know it happened.",
+        "x": 130,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "884cb236.0c0de",
+        "type": "comment",
+        "z": "7f94785c.d81b2",
+        "name": "If the dog is home, keep temps safe for her. ",
+        "info": "",
+        "x": 970,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "2e8c2016.9db718",
+        "type": "comment",
+        "z": "7f94785c.d81b2",
+        "name": "Manually Trigged with HomeKit",
+        "info": "Turns off everything not in the bed room that was on, turns on the bed room fan, and sets a timmer on the TV for 4 hours.",
+        "x": 150,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "5fb8cd29.fcfc04",
+        "type": "comment",
+        "z": "7f94785c.d81b2",
+        "name": "Dog Home State changed while in away mode",
+        "info": "Someitmes the Dog home state isn't correct when house goes into away mode. This subflow sets the temps to the correct mode in the event I update that boolean when house in the away mode.",
+        "x": 350,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "29555221.3a31ae",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    }
+]
