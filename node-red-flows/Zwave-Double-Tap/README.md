@@ -1,1 +1,1 @@
-![Living Room](./Living-Room-Double-Tap.png?raw=true)
+![Living Room](./Living-Room-Double-Tab.png?raw=true)
