@@ -83,4 +83,21 @@ binary_sensor:
       - switch.toggle: relay
     internal: True
     
+    
+#Where the magic happens, will be shown in HA and
+#All automations should be based on this output.  
+text_sensor:
+  - platform: template
+    name: "Washing Machine State"
+    id: state
+    lambda: |-
+      if (id(power).state > 5) {
+          //Machine likely Running
+          return {"Running"};
+      } else {
+          //Machine not running;
+          return {"Stopped"};
+      }
+    update_interval: 10s
+    
 # GIPO Pins pulled from https://templates.blakadder.com/stitch_27937.html

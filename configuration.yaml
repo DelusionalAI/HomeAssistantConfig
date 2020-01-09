@@ -71,6 +71,8 @@ recorder:
     domains:
       - device_tracker
       - updater
+    entities:
+      -  sensor.washing_machine_state
       
 weather:
   - platform: darksky
@@ -191,8 +193,6 @@ panel_custom:
 
 logger:
  default: error
- logs: 
-    lock: info
 
 media_player: !include media_player.yaml
 
