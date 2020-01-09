@@ -1,9 +1,9 @@
 language: python
 cache: pip
 python:
-  - "3.5"
+  - "3.7"
 install:
-  - "pip3 install homeassistant"
+  - "python3 -m pip install homeassistant"
 script:
   - "mv secrets.yaml.sample secrets.yaml"
   - "touch fullchain.pem"
