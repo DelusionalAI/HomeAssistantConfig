@@ -37,8 +37,11 @@ sensor:
       - calibrate_linear:
         - 32.4 -> 17.5
         - 114.0 -> 60
+      force_update: true #For InfluxDB/Grafana
     voltage_divider: 1008     # default 2351
     update_interval: 10s
+
+
     
   # Sum power readings over the day
   - platform: total_daily_energy
