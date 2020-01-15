@@ -128,6 +128,95 @@
         "wires": []
     },
     {
+        "id": "db2697e3.7de2a8",
+        "type": "server-state-changed",
+        "z": "c52f29d3.bb7f6",
+        "name": "Living Room Light changed",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "exposeToHomeAssistant": false,
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "entityidfilter": "light.light_room",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "105",
+        "halt_if_type": "str",
+        "halt_if_compare": "is_not",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 150,
+        "y": 360,
+        "wires": [
+            [
+                "26abe322.92a34c"
+            ],
+            [
+                "26abe322.92a34c"
+            ]
+        ]
+    },
+    {
+        "id": "26abe322.92a34c",
+        "type": "stoptimer",
+        "z": "c52f29d3.bb7f6",
+        "duration": "10",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 410,
+        "y": 360,
+        "wires": [
+            [
+                "b009d07b.86058"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b009d07b.86058",
+        "type": "api-call-service",
+        "z": "c52f29d3.bb7f6",
+        "name": "Pull new light state",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "zwave",
+        "service": "refresh_node",
+        "entityId": "",
+        "data": "{\"node_id\":\"4\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 630,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "757bbb1b.9d17f4",
+        "type": "comment",
+        "z": "c52f29d3.bb7f6",
+        "name": "Refresh Light status",
+        "info": "The Dimmer often takes time, and HA will report the state the light was in while it was still chaing.\nThis pulls the lastes info 10 seconds after any change. ",
+        "x": 350,
+        "y": 300,
+        "wires": []
+    },
+    {
         "id": "29555221.3a31ae",
         "type": "server",
         "z": "",
