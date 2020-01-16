@@ -6,6 +6,7 @@ install:
   - "python3 -m pip install homeassistant==0.104"
 script:
   - "mv secrets.yaml.sample secrets.yaml"
+  - "pip3 install netdisco" 
   - "touch fullchain.pem"
   - "touch privkey.pem"
   - "hass --version"
