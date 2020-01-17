@@ -39,7 +39,9 @@
             [
                 "b0f2314d.8fd52"
             ],
-            []
+            [
+                "fc3d51a0.7ce13"
+            ]
         ]
     },
     {
@@ -141,7 +143,7 @@
         "outputs": 2,
         "output_only_on_state_change": true,
         "x": 130,
-        "y": 120,
+        "y": 220,
         "wires": [
             [
                 "61b84d75.b697f4"
@@ -167,7 +169,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 340,
-        "y": 120,
+        "y": 220,
         "wires": [
             [
                 "894d50c3.c0b51"
@@ -192,7 +194,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 730,
-        "y": 120,
+        "y": 220,
         "wires": [
             []
         ]
@@ -213,7 +215,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 520,
-        "y": 120,
+        "y": 220,
         "wires": [
             [
                 "da6e2112.c6148"
@@ -268,7 +270,7 @@
         "outputinitially": false,
         "state_type": "str",
         "x": 90,
-        "y": 180,
+        "y": 280,
         "wires": [
             [
                 "f1467636.f38e28"
@@ -294,10 +296,137 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 340,
-        "y": 180,
+        "y": 280,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "fc3d51a0.7ce13",
+        "type": "stoptimer",
+        "z": "840d20cd.af434",
+        "duration": "3",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "",
+        "x": 340,
+        "y": 140,
+        "wires": [
+            [
+                "442b8d9a.784954"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "442b8d9a.784954",
+        "type": "api-current-state",
+        "z": "840d20cd.af434",
+        "name": "It Blacklight Still on",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "20",
+        "halt_if_type": "num",
+        "halt_if_compare": "gt",
+        "override_topic": false,
+        "entity_id": "sensor.greenwave_reality_inc_powernode_6_port_power_6",
+        "state_type": "num",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [
+                "2fdd382f.692988"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2fdd382f.692988",
+        "type": "api-call-service",
+        "z": "840d20cd.af434",
+        "name": "Unplug",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.greenwave_reality_inc_powernode_6_port_switch_5",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 720,
+        "y": 140,
+        "wires": [
+            [
+                "29a84d83.ab0372"
+            ]
+        ]
+    },
+    {
+        "id": "5cf246b4.479268",
+        "type": "api-call-service",
+        "z": "840d20cd.af434",
+        "name": "Plug In",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "switch",
+        "service": "turn_on",
+        "entityId": "switch.greenwave_reality_inc_powernode_6_port_switch_5",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 990,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29a84d83.ab0372",
+        "type": "delay",
+        "z": "840d20cd.af434",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 860,
+        "y": 140,
+        "wires": [
+            [
+                "5cf246b4.479268"
+            ]
+        ]
+    },
+    {
+        "id": "f4f82ac2.8e7448",
+        "type": "comment",
+        "z": "840d20cd.af434",
+        "name": "Fix TV Backlight",
+        "info": "When the TV is turned off while in Quick Start mode, it sometimes doesn't power off.\nThe backlight stays lit and the \"off\" tv will us up to 80W(?!) in standby mode.\nThis will cut and then restore power to the TV if it dectects thats the issue.",
+        "x": 120,
+        "y": 140,
+        "wires": []
     },
     {
         "id": "29555221.3a31ae",
