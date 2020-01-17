@@ -105,9 +105,7 @@
         "x": 880,
         "y": 360,
         "wires": [
-            [
-                "c1ce8b53.9240e8"
-            ]
+            []
         ]
     },
     {
@@ -259,62 +257,6 @@
         "info": "Currenlty both Z-Wave devices that I monitor do the same thing, but that will change as things expand",
         "x": 360,
         "y": 160,
-        "wires": []
-    },
-    {
-        "id": "44c70a1a.359b84",
-        "type": "api-call-service",
-        "z": "1c805e71.efbaea",
-        "name": "Refresh Light State",
-        "server": "29555221.3a31ae",
-        "version": 1,
-        "debugenabled": false,
-        "service_domain": "zwave",
-        "service": "refresh_entity",
-        "entityId": "light.light_room",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 1250,
-        "y": 360,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "c1ce8b53.9240e8",
-        "type": "delay",
-        "z": "1c805e71.efbaea",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 1080,
-        "y": 360,
-        "wires": [
-            [
-                "44c70a1a.359b84"
-            ]
-        ]
-    },
-    {
-        "id": "b767bb79.b2fcf",
-        "type": "comment",
-        "z": "1c805e71.efbaea",
-        "name": "Fix reporting issue",
-        "info": "Because the light dims to off, Home Assistant sometimes reports the light as still on, but really low. This updates the light to the correct state.",
-        "x": 1450,
-        "y": 360,
         "wires": []
     },
     {
