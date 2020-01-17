@@ -3,7 +3,7 @@ cache: pip
 python:
   - "3.7.3"
 install:
-  - "python3 -m pip install homeassistant==0.104"
+  - "python3 -m pip install homeassistant==0.104.1"
 script:
   - "mv secrets.yaml.sample secrets.yaml"
   - "pip3 install netdisco" 
