@@ -36,7 +36,7 @@ switches_entertainment:
 switches_all_off:
     name: switches_all_off
     view: false
-    entites: 
+    entities: 
       - switch.greenwave_reality_inc_powernode_6_port_switch
       - switch.greenwave_reality_inc_powernode_6_port_switch_2
       - switch.greenwave_reality_inc_powernode_6_port_switch_3
@@ -51,7 +51,7 @@ switches_all_off:
 switches_all_on:
     name: switches_all_on
     view: false
-    entites: 
+    entities: 
       - switch.greenwave_reality_inc_powernode_6_port_switch 
       - switch.greenwave_reality_inc_powernode_6_port_switch_5 
       - switch.greenwave_reality_inc_powernode_6_port_switch_6 
