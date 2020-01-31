@@ -53,6 +53,7 @@ switches_all_on:
     view: false
     entities: 
       - switch.greenwave_reality_inc_powernode_6_port_switch 
+      - switch.greenwave_reality_inc_powernode_6_port_switch_4
       - switch.greenwave_reality_inc_powernode_6_port_switch_5 
       - switch.greenwave_reality_inc_powernode_6_port_switch_6 
       - switch.bedroom_tv_plug_relay
