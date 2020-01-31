@@ -1,0 +1,131 @@
+title: Home
+views:
+  - panel: false
+    path: default_view
+    title: Home
+    theme: Google Dark Theme
+    badges:
+      - entity: binary_sensor.brett_home
+      - entity: binary_sensor.courtney_home
+    cards:
+      - entity: weather.dark_sky
+        name: Dark Sky - Home
+        type: weather-forecast
+      - entities:
+          - entity: fan.living_room_fan
+          - entity: light.light_room
+        show_header_toggle: false
+        title: Living Room
+        type: entities
+      - entities:
+          - entity: switch.bedroom_light
+          - entity: fan.master_bed_room
+        show_header_toggle: true
+        title: Master bed room
+        type: entities
+      - entity: climate.kitchen
+        type: thermostat
+      - entity: media_player.living_room_tv
+        type: media-control
+      - entity: media_player.bedroom_tv
+        type: media-control
+      - entity: camera.garage
+        type: picture-entity
+      - entities:
+          - switch.stairway_light
+        title: Stairway
+        type: entities
+      - entities:
+          - lock.yale_key_free_touchscreen_deadbolt_yrd446
+        title: Lock
+        type: entities
+  - badges: []
+    cards:
+      - elements:
+          - entity: switch.bedroom_light
+            icon: 'mdi:ceiling-light'
+            style:
+              '--iron-icon-height': 42px
+              '--iron-icon-width': 42px
+              left: 55%
+              top: 52%
+            tap_action:
+              action: toggle
+            title: Bedroom light
+            type: state-icon
+          - entity: fan.master_bed_room
+            icon: 'mdi:fan'
+            style:
+              '--iron-icon-height': 42px
+              '--iron-icon-width': 42px
+              left: 55%
+              top: 59%
+            tap_action:
+              action: toggle
+            title: Bedroom Fan
+            type: state-icon
+          - entity: media_player.bedroom_tv
+            icon: 'mdi:television'
+            style:
+              '--iron-icon-height': 42px
+              '--iron-icon-width': 42px
+              left: 78.5%
+              top: 43%
+            title: Bedroom TV
+            type: state-icon
+        image: /local/Bedroom.jpg
+        type: picture-elements
+    panel: false
+    path: bedroom
+    title: Bedroom
+  - badges: []
+    cards:
+      - entities:
+          - entity: switch.greenwave_reality_inc_powernode_6_port_switch_6
+          - entity: switch.greenwave_reality_inc_powernode_6_port_switch
+          - entity: switch.greenwave_reality_inc_powernode_6_port_switch_2
+          - entity: switch.greenwave_reality_inc_powernode_6_port_switch_3
+          - entity: switch.greenwave_reality_inc_powernode_6_port_switch_4
+          - entity: switch.greenwave_reality_inc_powernode_6_port_switch_5
+          - entity: switch.washer_plug_relay
+          - entity: switch.bedroom_tv_plug_relay
+        type: entities
+      - entities:
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_energy
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_energy_2
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_energy_3
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_energy_4
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_energy_5
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_energy_6
+          - entity: sensor.washer_plug_total_daily_energy
+        type: entities
+      - entities:
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_power
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_power_2
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_power_3
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_power_4
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_power_5
+          - entity: sensor.greenwave_reality_inc_powernode_6_port_power_6
+          - entity: sensor.washer_plug_power
+          - entity: sensor.bedroom_tv_plug_power
+        type: entities
+    path: power
+    title: Power
+  - badges: []
+    cards:
+      - entities:
+          - entity: input_boolean.home_occupied
+          - entity: input_boolean.guestmode
+          - entity: input_boolean.sleepmode
+          - entity: input_boolean.motorcyle_tracker
+          - entity: input_boolean.rikka_override
+          - entity: switch.desktop
+        show_header_toggle: false
+        title: OverRides
+        type: entities
+      - entity: sensor.washing_machine_state
+        type: sensor
+      - entity: light.light_room
+        type: light
+    path: debug
+    title: Debug
