@@ -1,0 +1,160 @@
+[
+    {
+        "id": "615c0e6c.63a75",
+        "type": "tab",
+        "label": "Auto-Backup",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3d0cf45b.e5e99c",
+        "type": "inject",
+        "z": "615c0e6c.63a75",
+        "name": "Start Full Backup Weekly",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 00 * * 0",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "47313bdb.fa8edc"
+            ]
+        ]
+    },
+    {
+        "id": "d524151.c73a768",
+        "type": "api-call-service",
+        "z": "615c0e6c.63a75",
+        "name": "Run Full Backup",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "hassio",
+        "service": "snapshot_full",
+        "entityId": "",
+        "data": "{\"name\":\"AutoSnap Shot at {{humanTimeStamp}}\",\"password\":\"{{password}}\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 870,
+        "y": 180,
+        "wires": [
+            [
+                "fa005544.a9d55"
+            ]
+        ]
+    },
+    {
+        "id": "ca3bf83f.7618b8",
+        "type": "credentials",
+        "z": "615c0e6c.63a75",
+        "name": "Inject Password Securely",
+        "props": [
+            {
+                "value": "password",
+                "type": "msg"
+            }
+        ],
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "d524151.c73a768"
+            ]
+        ]
+    },
+    {
+        "id": "47313bdb.fa8edc",
+        "type": "moment",
+        "z": "615c0e6c.63a75",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "America/Chicago",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "YYYY-MM-DD",
+        "locale": "C",
+        "output": "humanTimeStamp",
+        "outputType": "msg",
+        "outTz": "America/Chicago",
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "ca3bf83f.7618b8"
+            ]
+        ]
+    },
+    {
+        "id": "ef2dba09.d6e0d",
+        "type": "comment",
+        "z": "615c0e6c.63a75",
+        "name": "Run a full backup weekly on Sunday at 00:00 local",
+        "info": "",
+        "x": 470,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "fa005544.a9d55",
+        "type": "delay",
+        "z": "615c0e6c.63a75",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "hours",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 680,
+        "y": 260,
+        "wires": [
+            [
+                "f18cabd8.1de11"
+            ]
+        ]
+    },
+    {
+        "id": "f18cabd8.1de11",
+        "type": "api-call-service",
+        "z": "615c0e6c.63a75",
+        "name": "Upload backups to Dropbox",
+        "server": "29555221.3a31ae",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "hassio",
+        "service": "addon_stdin",
+        "entityId": "",
+        "data": "{\"addon\":\"7be23ff5_dropbox_sync\",\"input\":{\"command\":\"upload\"}}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 900,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "29555221.3a31ae",
+        "type": "server",
+        "z": "",
+        "name": "Home Assistant"
+    }
+]
