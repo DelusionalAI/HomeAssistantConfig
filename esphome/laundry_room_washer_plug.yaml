@@ -94,13 +94,18 @@ text_sensor:
     name: "Washing Machine State"
     id: state
     lambda: |-
-      if (id(power).state > 5) {
-          //Machine likely Running
-          return {"Running"};
+      static string machineState = "Stopped"
+      if (machineState == "Stopped" && id(power).state > 5) { //Machine is doing something
+        machineState = "Running";
+      } else if (machineState = "Running" && (id(power).state > 310) && (id(power).state < 315)){
+        machineState = "Spining"; //Machine is on, and drawing power bettwen 310-315 Watts
+      } else if (machineState = "Spining" && (id(power).state < 5)) { //When power drops after spin cycle
+        machineState = "Stopped";
       } else {
-          //Machine not running;
-          return {"Stopped"};
+        //Not sure how we got here
+        machineState = "Unkown";
       }
+      return machineState;
     update_interval: 10s
-    
+
 # GIPO Pins pulled from https://templates.blakadder.com/stitch_27937.html
