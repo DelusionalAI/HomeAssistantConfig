@@ -3,7 +3,6 @@ views:
   - panel: false
     path: default_view
     title: Home
-    theme: Google Dark Theme
     badges:
       - entity: binary_sensor.brett_home
       - entity: binary_sensor.courtney_home
