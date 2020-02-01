@@ -1,0 +1,7 @@
+# Options for the Front end. Just links to themes
+
+# https://www.home-assistant.io/integrations/frontend/
+
+# Adds in the themes folder, which is up a level. 
+frontend:
+  themes: !include_dir_merge_named ../themes

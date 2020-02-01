@@ -1,6 +1,10 @@
-#Access to TV's via IP contorl
-#https://www.home-assistant.io/integrations/vizio/
+# Media player config files. Adds both vizio IP control (pyvizio)
+# and makes a "universal" media player out of them
 
+# https://www.home-assistant.io/integrations/media_player
+# https://www.home-assistant.io/integrations/vizio/
+
+media_player:
 - platform: vizio
   host: !secret BedroomTV_IP
   access_token: !secret BedroomTV_Token
@@ -10,8 +14,10 @@
   access_token: !secret LivingRoomTV_Token
   name: living_room_tv_v
 
+# Merge The Chromecast and Vizio states for the TV into one master media device. 
+# This makes things like the poweroff command go though pyvizio, which is more
+# reliable than powering it off from the Chromecast side of things
 
-#Merge The Chromecast and Vizio states for the TV into one master media device. 
 - platform: universal
   name: Living Room TV
   children: 
@@ -37,7 +43,7 @@
    source_list: media_player.living_room_tv_v|source_list
    volume_level: media_player.living_room_tv_v|volume_level
 
-
+# Same as above, but for the bedroom TV
 - platform: universal
   name: Bedroom TV
   children: 

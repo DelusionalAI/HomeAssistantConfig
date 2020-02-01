@@ -2,6 +2,9 @@
 #Actually currently this is just GPS and the other inputs don't mater. I'll either tweek them
 #Or just remove all calls to this and just GPS alone. Its pretty reliable. 
 
+# https://www.home-assistant.io/integrations/bayesian
+
+binary_sensor:
 - platform: 'bayesian'
   prior: 0.6
   name: 'Brett Home'
