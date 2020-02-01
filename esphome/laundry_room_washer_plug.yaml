@@ -103,9 +103,6 @@ text_sensor:
         machineState = 0;
       } else if (machineState == 0 && id(power).state < 5) {
         machineState = 0; //Machine was off, and its still off
-      }     else {
-        //Not sure how we got here
-        machineState = 999;
       }
       if (machineState == 0){
         return {"Stopped"};
