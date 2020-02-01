@@ -70,12 +70,6 @@ switch:
 # Once I switch to a proper NUC I'll save move to another DB
 recorder:
   purge_keep_days: 5
-  include:
-    domains:
-      - device_tracker
-      - updater
-    entities:
-      -  sensor.washing_machine_state
       
 weather:
   - platform: darksky
