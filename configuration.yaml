@@ -137,11 +137,12 @@ cloud:
     filter:
       include_domains:
        - light
-       - switch
        - fan
        - lock
       include_entities:
        - input_boolean.sleepmode
+       - switch.bedroom_light
+       - switch.stairway_light
        
 homekit:
   auto_start: false
