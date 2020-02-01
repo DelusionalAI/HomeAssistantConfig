@@ -1,0 +1,61 @@
+switches_all_lights:
+    name: switches_all_lights
+    view: false
+    entities:
+      - switch.bedroom_light
+      - switch.stairway_light
+      
+lights_all_lights:
+    name: lights_all_lights
+    view: false
+    entities:
+      - light.light_room
+      
+switches_greenwave:
+    name: switches_greenwave
+    view: false
+    entities:
+      - switch.greenwave_reality_inc_powernode_6_port_switch
+      - switch.greenwave_reality_inc_powernode_6_port_switch_2
+      - switch.greenwave_reality_inc_powernode_6_port_switch_3
+      - switch.greenwave_reality_inc_powernode_6_port_switch_4
+      - switch.greenwave_reality_inc_powernode_6_port_switch_5
+      - switch.greenwave_reality_inc_powernode_6_port_switch_6
+      
+
+
+switches_entertainment:
+    name: swtiches_entertainment
+    view: false
+    entities:
+        - switch.greenwave_reality_inc_powernode_6_port_switch_5
+        - switch.greenwave_reality_inc_powernode_6_port_switch_4
+        - switch.greenwave_reality_inc_powernode_6_port_switch
+
+#These Should be off when nobody is home
+switches_all_off:
+    name: switches_all_off
+    view: false
+    entities: 
+      - switch.greenwave_reality_inc_powernode_6_port_switch
+      - switch.greenwave_reality_inc_powernode_6_port_switch_2
+      - switch.greenwave_reality_inc_powernode_6_port_switch_3
+      - switch.greenwave_reality_inc_powernode_6_port_switch_4
+      - switch.greenwave_reality_inc_powernode_6_port_switch_5
+      - switch.greenwave_reality_inc_powernode_6_port_switch_6
+      - switch.bedroom_tv_plug_relay
+#      - switch.washer_plug_relay
+#Lets use Logic on this one, Don't power it off when if its running
+
+#Should be back on when people are home.
+switches_all_on:
+    name: switches_all_on
+    view: false
+    entities: 
+      - switch.greenwave_reality_inc_powernode_6_port_switch 
+      - switch.greenwave_reality_inc_powernode_6_port_switch_4
+      - switch.greenwave_reality_inc_powernode_6_port_switch_5 
+      - switch.greenwave_reality_inc_powernode_6_port_switch_6 
+      - switch.bedroom_tv_plug_relay
+      - switch.washer_plug_relay
+
