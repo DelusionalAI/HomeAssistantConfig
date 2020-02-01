@@ -101,7 +101,9 @@ text_sensor:
         machineState = 2; //Machine is on, and drawing power bettwen 310-315 Watts
       } else if (machineState == 2 && (id(power).state < 5)) { //When power drops after spin cycle
         machineState = 0;
-      } else {
+      } else if (machineState == 0 && id(power).state < 5) {
+        machineState = 0; //Machine was off, and its still off
+      }     else {
         //Not sure how we got here
         machineState = 999;
       }
@@ -112,7 +114,7 @@ text_sensor:
       } else if (machineState == 2) {
         return {"Spinning"};
       } else {
-        return {"Unkown"};
+        return {"Unknown"};
       }
     update_interval: 10s
 
