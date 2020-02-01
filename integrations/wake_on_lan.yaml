@@ -1,0 +1,6 @@
+# Enable WoL
+
+# https://www.home-assistant.io/integrations/wake_on_lan
+# See switch.yaml for info about whats acting waking
+
+wake_on_lan:

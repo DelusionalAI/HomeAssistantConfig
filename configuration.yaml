@@ -34,25 +34,6 @@ lovelace:
 # Enables configuration UI
 config:
 
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-updater:
-
-# Enables support for tracking state changes over time
-history:
-
-# View all events in a logbook
-logbook:
-
-# Enables a map showing the location of tracked devices
-map:
-
-#Enable WoL
-wake_on_lan:
-
 switch:
   - platform: wake_on_lan
     name: "Desktop"
@@ -60,20 +41,6 @@ switch:
     mac: !secret WOL_1_mac
     # https://github.com/home-assistant/home-assistant/pull/28830
     # mac_address: !secret WOL_1_mac
-
-# I currently record very few things and to not murder my SD card
-# Once I switch to a proper NUC I'll save move to another DB
-recorder:
-  purge_keep_days: 5
-      
-weather:
-  - platform: darksky
-    api_key: !secret dark_sky_api
-    
-# Text to speech
-tts:
-  - platform: google_translate
-    service_name: google_say
 
 panel_iframe:
   router:
@@ -93,14 +60,8 @@ nest:
      - 'person_detected'
      - 'away'
     
-mobile_app:
-ios:
 
-discovery:
-    ignore:
-    - google_cast
-    - octoprint
-    - igd #Disabled uPnP Discovery. Not well Documented.
+
 
 unifi:
   controllers:
@@ -177,10 +138,6 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
-remote:
-  - platform: broadlink
-    host: !secret broadlink_host
-    mac: !secret broadlink_mac
     
 #Currently in testing phase until I feel it can replace the real system. 
 alarm_control_panel:
