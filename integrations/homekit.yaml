@@ -1,0 +1,27 @@
+# Homekit allows contorl of listed entities from iOS and Siri Devices
+#
+# https://www.home-assistant.io/integrations/homekit
+#
+
+homekit:
+  # Don't auto start, we need to wait for Z-Wave network
+  auto_start: false
+
+  # Filters what devices we do and don't want in Homekit.
+  filter:
+    include_domains:
+      - light
+      - fan
+      - climate
+    include_entities:
+      - lock.yale_key_free_touchscreen_deadbolt_yrd446
+      - input_boolean.sleepmode
+      - switch.bedroom_light
+      - switch.stairway_light
+
+  # Options for Entites in Homekit. I.E. It knows the baterry
+  # level of the lock by the vaule of its sensor as well.    
+  entity_config:
+    lock.yale_key_free_touchscreen_deadbolt_yrd446:
+      linked_battery_sensor: sensor.assa_abloy_yale_key_free_touchscreen_deadbolt_yrd446_battery_level
+      low_battery_threshold: 20

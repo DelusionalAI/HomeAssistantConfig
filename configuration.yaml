@@ -1,4 +1,8 @@
-#Welcome to my config file. Its an ugly mess, but will be cleaned up Someday.
+# Welcome to my config file. Its an ugly mess, but will be cleaned up Someday.
+
+# That someday is today my friends. Current in testing
+
+
 
 homeassistant:
   # Name of the location where Home Assistant is running
@@ -20,15 +24,12 @@ homeassistant:
     - type: notify
       message: 'Your Home Assistant sign in code is: {}'
 
+  # This will load all yaml files in the intergartions dir
+  # I hope
+  packages: !include_dir_named integrations
+
 zone: !include zones.yaml
 
-#Not sure the ssl stuff needs to be in secret, however there is no harm in it.
-http:
-  base_url: !secret http_base_url
-  ssl_certificate: !secret ssl_certificate
-  ssl_key: !secret ssl_key
-  ip_ban_enabled: true
-  login_attempts_threshold: 10
 
 # Enables the frontend
 frontend:
@@ -138,22 +139,7 @@ cloud:
        - switch.bedroom_light
        - switch.stairway_light
        
-homekit:
-  auto_start: false
-  filter:
-    include_domains:
-      - light
-      - fan
-      - climate
-    include_entities:
-      - lock.yale_key_free_touchscreen_deadbolt_yrd446
-      - input_boolean.sleepmode
-      - switch.bedroom_light
-      - switch.stairway_light
-  entity_config:
-    lock.yale_key_free_touchscreen_deadbolt_yrd446:
-      linked_battery_sensor: sensor.assa_abloy_yale_key_free_touchscreen_deadbolt_yrd446_battery_level
-      low_battery_threshold: 20
+
       
 #Makes sure Zwave is online before Homekit is
 automation:
