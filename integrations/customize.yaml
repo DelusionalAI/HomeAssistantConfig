@@ -1,43 +1,42 @@
-customize::
-  media_player.viziocastdisplay8395:
-    device_class: tv
-  media_player.living_room_tv_2:
-    device_class: tv
-  media_player.vizio_smartcast:
-    friendly_name: Bedroom_TV
-  switch.greenwave_reality_inc_powernode_6_port_switch_3:
-    icon: mdi:power-socket-us
-  switch.greenwave_reality_inc_powernode_6_port_switch_2:
-    icon: mdi:power-socket-us
-  switch.greenwave_reality_inc_powernode_6_port_switch_5:
-    icon: mdi:power-socket-us
-  switch.greenwave_reality_inc_powernode_6_port_switch:
-    icon: mdi:power-socket-us
-  switch.greenwave_reality_inc_powernode_6_port_switch_6:
-    icon: mdi:power-socket-us
-  switch.greenwave_reality_inc_powernode_6_port_switch_4:
-    icon: mdi:power-socket-us
-  sensor.greenwave_reality_inc_powernode_6_port_energy:
-    icon: mdi:alpha-e-box
-  sensor.greenwave_reality_inc_powernode_6_port_energy_5:
-    icon: mdi:alpha-e-box
-  sensor.greenwave_reality_inc_powernode_6_port_energy_6:
-    icon: mdi:alpha-e-box
-  sensor.greenwave_reality_inc_powernode_6_port_energy_3:
-    icon: mdi:alpha-e-box
-  sensor.greenwave_reality_inc_powernode_6_port_energy_4:
-    icon: mdi:alpha-e-box
-  sensor.greenwave_reality_inc_powernode_6_port_energy_2:
-    icon: mdi:alpha-e-box
-  sensor.greenwave_reality_inc_powernode_6_port_power_5:
-    icon: mdi:alpha-p-box
-  sensor.greenwave_reality_inc_powernode_6_port_power:
-    icon: mdi:alpha-p-box
-  sensor.greenwave_reality_inc_powernode_6_port_power_2:
-    icon: mdi:alpha-p-box
-  sensor.greenwave_reality_inc_powernode_6_port_power_6:
-    icon: mdi:alpha-p-box
-  sensor.greenwave_reality_inc_powernode_6_port_power_3:
-    icon: mdi:alpha-p-box
-  sensor.greenwave_reality_inc_powernode_6_port_power_4:
-    icon: mdi:alpha-p-box
+media_player.viziocastdisplay8395:
+  device_class: tv
+media_player.living_room_tv_2:
+  device_class: tv
+media_player.vizio_smartcast:
+  friendly_name: Bedroom_TV
+switch.greenwave_reality_inc_powernode_6_port_switch_3:
+  icon: mdi:power-socket-us
+switch.greenwave_reality_inc_powernode_6_port_switch_2:
+  icon: mdi:power-socket-us
+switch.greenwave_reality_inc_powernode_6_port_switch_5:
+  icon: mdi:power-socket-us
+switch.greenwave_reality_inc_powernode_6_port_switch:
+  icon: mdi:power-socket-us
+switch.greenwave_reality_inc_powernode_6_port_switch_6:
+  icon: mdi:power-socket-us
+switch.greenwave_reality_inc_powernode_6_port_switch_4:
+  icon: mdi:power-socket-us
+sensor.greenwave_reality_inc_powernode_6_port_energy:
+  icon: mdi:alpha-e-box
+sensor.greenwave_reality_inc_powernode_6_port_energy_5:
+  icon: mdi:alpha-e-box
+sensor.greenwave_reality_inc_powernode_6_port_energy_6:
+  icon: mdi:alpha-e-box
+sensor.greenwave_reality_inc_powernode_6_port_energy_3:
+  icon: mdi:alpha-e-box
+sensor.greenwave_reality_inc_powernode_6_port_energy_4:
+  icon: mdi:alpha-e-box
+sensor.greenwave_reality_inc_powernode_6_port_energy_2:
+  icon: mdi:alpha-e-box
+sensor.greenwave_reality_inc_powernode_6_port_power_5:
+  icon: mdi:alpha-p-box
+sensor.greenwave_reality_inc_powernode_6_port_power:
+  icon: mdi:alpha-p-box
+sensor.greenwave_reality_inc_powernode_6_port_power_2:
+  icon: mdi:alpha-p-box
+sensor.greenwave_reality_inc_powernode_6_port_power_6:
+  icon: mdi:alpha-p-box
+sensor.greenwave_reality_inc_powernode_6_port_power_3:
+  icon: mdi:alpha-p-box
+sensor.greenwave_reality_inc_powernode_6_port_power_4:
+  icon: mdi:alpha-p-box
