@@ -1,0 +1,13 @@
+# Switch used for WOL
+
+# https://www.home-assistant.io/integrations/Wake_on_lan
+# https://www.home-assistant.io/integrations/switch
+
+
+switch:
+  - platform: wake_on_lan
+    name: "Desktop"
+    host: !secret WOL_1_host
+    mac: !secret WOL_1_mac
+    # https://github.com/home-assistant/home-assistant/pull/28830
+    # mac_address: !secret WOL_1_mac
