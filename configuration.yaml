@@ -31,6 +31,7 @@ homeassistant:
 
 lovelace:
   mode: yaml
+  
 # Enables configuration UI
 config:
 
@@ -48,46 +49,13 @@ panel_iframe:
     url: !secret ocotprint_url
     icon: mdi:printer-3d-nozzle
 
-nest:
-  client_id: !secret nest_client_id
-  client_secret: !secret nest_client_secret
-  sensors:
-    monitored_conditions:
-     - 'eta'
-  binary_sensors:
-    monitored_conditions:
-     - 'motion_detected'
-     - 'person_detected'
-     - 'away'
-    
-
-
-
-unifi:
-  controllers:
-    - host: unifi
-      site: Default
-      ssid_filter:
-        - !secret main_ssid
-
 octoprint:
   host: !secret ocotprint_hostname
   api_key: !secret ocotprint_api
   name: Prusia i3 MK2.5
   number_of_tools: 1
   bed: true
-  
-cloud:
-  google_actions:
-    filter:
-      include_domains:
-       - light
-       - fan
-       - lock
-      include_entities:
-       - input_boolean.sleepmode
-       - switch.bedroom_light
-       - switch.stairway_light
+
        
 
       
@@ -127,17 +95,6 @@ panel_custom:
 
 logger:
  default: error
-
-
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: homeassistant
-  password: !secret influxdb_password
-  max_retries: 3
-  default_measurement: state
-
     
 #Currently in testing phase until I feel it can replace the real system. 
 alarm_control_panel:

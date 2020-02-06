@@ -1,0 +1,15 @@
+# Contorls what devices are and not not avalibe over the Google Assistant
+
+# https://www.nabucasa.com/config/google_assistant/
+  
+cloud:
+  google_actions:
+    filter:
+      include_domains:
+       - light
+       - fan
+       - lock
+      include_entities:
+       - input_boolean.sleepmode
+       - switch.bedroom_light
+       - switch.stairway_light

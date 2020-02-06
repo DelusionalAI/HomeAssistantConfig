@@ -1,0 +1,10 @@
+# Unifi for device managemtn. Added though UI, but filters added here
+
+# https://www.home-assistant.io/integrations/unifi
+
+unifi:
+  controllers:
+    - host: unifi
+      site: Default
+      ssid_filter:
+        - !secret main_ssid

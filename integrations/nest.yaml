@@ -1,0 +1,16 @@
+# Nest. I was luckly enough to get an account before the google cut over 
+# Will be replaced with another product for Video and Climate someday. 
+
+# https://www.home-assistant.io/integrations/nest/
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+  sensors:
+    monitored_conditions:
+     - 'eta'
+  binary_sensors:
+    monitored_conditions:
+     - 'motion_detected'
+     - 'person_detected'
+     - 'away'
+    
