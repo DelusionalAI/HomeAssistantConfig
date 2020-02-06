@@ -1,0 +1,17 @@
+# Booleans used for Status/Overrides. 
+# Allows for manual control of states
+
+# https://www.home-assistant.io/integrations/input_boolean
+
+input_boolean:
+   home_occupied:
+    name: Is anybody home?
+   sleepmode:
+    name: Sleep mode
+   guestmode:
+    name: Guest Override
+   motorcyle_tracker:
+    name: Motorcycle home
+   rikka_override:
+    name: Rikka Home Override
+    

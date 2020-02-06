@@ -1,0 +1,6 @@
+# Enables configuration UI
+# Not a large file, but an important one
+
+# https://www.home-assistant.io/integrations/config
+
+config:

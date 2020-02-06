@@ -1,0 +1,10 @@
+# Allows status of printer to show up as sensors in Home Assistant Core
+
+# https://www.home-assistant.io/integrations/octoprint/
+
+octoprint:
+  host: !secret ocotprint_hostname
+  api_key: !secret ocotprint_api
+  name: Prusia i3 MK2.5
+  number_of_tools: 1
+  bed: true
