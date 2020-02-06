@@ -1,0 +1,10 @@
+# Allows custom panels. Added in the Zwave graph from
+# https://community.home-assistant.io/t/z-wave-graph-without-the-python/64275
+
+# https://www.home-assistant.io/integrations/panel_custom/
+
+panel_custom:
+  - name: zwavegraph2
+    sidebar_title: Z-Wave Graph
+    sidebar_icon: mdi:access-point-network
+    url_path: zwave

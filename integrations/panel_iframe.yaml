@@ -1,0 +1,9 @@
+# Allows me to see Octoprint inside HA
+
+# https://www.home-assistant.io/integrations/panel_iframe/ 
+
+panel_iframe:
+  router:
+    title: 'OctoPi'
+    url: !secret ocotprint_url
+    icon: mdi:printer-3d-nozzle

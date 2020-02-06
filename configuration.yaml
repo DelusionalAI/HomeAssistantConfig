@@ -31,9 +31,8 @@ homeassistant:
 
 lovelace:
   mode: yaml
-  
-# Enables configuration UI
-config:
+
+
 
 switch:
   - platform: wake_on_lan
@@ -43,49 +42,9 @@ switch:
     # https://github.com/home-assistant/home-assistant/pull/28830
     # mac_address: !secret WOL_1_mac
 
-panel_iframe:
-  router:
-    title: 'OctoPi'
-    url: !secret ocotprint_url
-    icon: mdi:printer-3d-nozzle
-
-octoprint:
-  host: !secret ocotprint_hostname
-  api_key: !secret ocotprint_api
-  name: Prusia i3 MK2.5
-  number_of_tools: 1
-  bed: true
-
-       
-
-      
-#Makes sure Zwave is online before Homekit is
-automation:
-  - alias: 'Start HomeKit'
-    trigger:
-      - platform: event
-        event_type: zwave.network_ready
-      - platform: event
-        event_type: zwave.network_complete
-      - platform: event
-        event_type: zwave.network_complete_some_dead
-    action:
-      - service: homekit.start
   
-#Booleans used for Status/Overrides
-input_boolean:
-   home_occupied:
-    name: Is anybody home?
-   sleepmode:
-    name: Sleep mode
-   guestmode:
-    name: Guest Override
-   motorcyle_tracker:
-    name: Motorcycle home
-   rikka_override:
-    name: Rikka Home Override
-    
-system_health:
+
+
 
 panel_custom:
   - name: zwavegraph2
