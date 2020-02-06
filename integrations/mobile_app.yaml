@@ -1,0 +1,7 @@
+# Enabled the mobile app, and the ios features
+
+# https://www.home-assistant.io/integrations/mobile_app
+# https://companion.home-assistant.io/
+
+mobile_app:
+ios:

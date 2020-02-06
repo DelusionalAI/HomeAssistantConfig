@@ -6,6 +6,8 @@ install:
   - "python3 -m pip install homeassistant==0.105.1"
 script:
   - "mv secrets.yaml.sample secrets.yaml"
+  - "rm integrations/customize.yaml"
+  - "touch integrations/customize.yaml" #Customize always fails test due to no real zwave network
   - "pip3 install netdisco" 
   - "touch fullchain.pem"
   - "touch privkey.pem"

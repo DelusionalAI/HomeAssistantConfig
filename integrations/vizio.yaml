@@ -1,0 +1,14 @@
+# Enables Control over TV's over IP from Vizio API
+
+# https://www.home-assistant.io/integrations/vizio/
+# Moved out of media_player.yaml in 105
+
+vizio:
+  - host: !secret LivingRoomTV_IP
+    access_token: !secret LivingRoomTV_Token
+    name: living_room_tv_v
+    device_class: tv
+  - host: !secret BedroomTV_IP
+    access_token: !secret BedroomTV_Token
+    name: bedroom_tv_v
+    device_class: tv

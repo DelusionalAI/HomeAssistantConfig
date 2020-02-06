@@ -1,0 +1,11 @@
+# Configuration for the web page UI of Home Assistant 
+#
+# https://www.home-assistant.io/integrations/http
+
+
+http:
+  base_url: !secret http_base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  ip_ban_enabled: true
+  login_attempts_threshold: 10

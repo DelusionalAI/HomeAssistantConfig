@@ -1,0 +1,5 @@
+# Allows for system info under Dev tools
+
+# https://www.home-assistant.io/integrations/system_health
+
+system_health:

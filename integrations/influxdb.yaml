@@ -1,0 +1,14 @@
+# Influx DB for long term history storage
+# DB is installed using offical addon
+# https://github.com/hassio-addons/addon-influxdb/blob/v3.5.1/README.md
+
+# https://www.home-assistant.io/integrations/influxdb/
+
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state

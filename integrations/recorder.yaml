@@ -1,0 +1,6 @@
+# Contorlls how long history can be seen in HA UI.
+
+# https://www.home-assistant.io/integrations/recorder
+
+recorder:
+  purge_keep_days: 5

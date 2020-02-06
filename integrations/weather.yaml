@@ -1,0 +1,8 @@
+# Adds in the weather componetn. Darksy is the one used
+
+# https://www.home-assistant.io/integrations/weather
+# https://www.home-assistant.io/integrations/darksky
+
+weather:
+  - platform: darksky
+    api_key: !secret dark_sky_api

@@ -1,0 +1,17 @@
+# Alarm contolr panel, in testing until I feel like
+# its secure enough to replace my real one
+
+# https://www.home-assistant.io/integrations/alarm_control_panel
+
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: !secret alarm_code
+    pending_time: 30
+    delay_time: 20
+    trigger_time: 4
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0

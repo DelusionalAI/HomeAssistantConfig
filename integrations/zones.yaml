@@ -1,3 +1,8 @@
+# Zones used by GPS trackers
+
+# https://www.home-assistant.io/integrations/zone/
+
+zone:
 - name: !secret brett_work_1_name
   latitude: !secret brett_work_1_latitude
   longitude: !secret brett_work_1_longitude

@@ -1,0 +1,9 @@
+# Enables the remote broadlink platform used to control audio system
+
+# https://www.home-assistant.io/integrations/remote
+# https://www.home-assistant.io/integrations/broadlink
+
+remote:
+  - platform: broadlink
+    host: !secret broadlink_host
+    mac: !secret broadlink_mac

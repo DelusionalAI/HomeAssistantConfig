@@ -1,0 +1,9 @@
+# Enables discover, and hides what I don't want discoverd
+
+# https://www.home-assistant.io/integrations/discovery
+
+discovery:
+    ignore:
+    - google_cast
+    - octoprint
+    - igd #Disables uPnP Discovery. Not well Documented.
