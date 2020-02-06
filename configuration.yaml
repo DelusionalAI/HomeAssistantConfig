@@ -4,57 +4,11 @@
 
 
 
-homeassistant:
-  # Name of the location where Home Assistant is running
-  name: Home
-  # Location required to calculate the time the sun rises and sets
-  latitude: !secret home_latitude
-  longitude: !secret home_longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: !secret home_elevation
-  # metric for Metric, imperial for Imperial
-  unit_system: imperial
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: America/Chicago
-  # Customization file
-  customize: !include customize.yaml
-  auth_mfa_modules:
-    - type: totp
-      name: Authenticator app
-    - type: notify
-      message: 'Your Home Assistant sign in code is: {}'
 
   # This will load all yaml files in the intergartions dir
   # I hope
   packages: !include_dir_named integrations
 
 
-lovelace:
-  mode: yaml
 
-
-
-switch:
-  - platform: wake_on_lan
-    name: "Desktop"
-    host: !secret WOL_1_host
-    mac: !secret WOL_1_mac
-    # https://github.com/home-assistant/home-assistant/pull/28830
-    # mac_address: !secret WOL_1_mac
-
-logger:
- default: error
     
-#Currently in testing phase until I feel it can replace the real system. 
-alarm_control_panel:
-  - platform: manual
-    name: Home Alarm
-    code: !secret alarm_code
-    pending_time: 30
-    delay_time: 20
-    trigger_time: 4
-    disarmed:
-      trigger_time: 0
-    armed_home:
-      pending_time: 0
-      delay_time: 0
