@@ -7,22 +7,22 @@ media_player:
   - platform: universal
     name: Living Room TV
     children: 
-    - media_player.living_room_tv_c
-    - media_player.living_room_tv_v
+      - media_player.living_room_tv_c
+      - media_player.living_room_tv_v
     commands:
-    turn_on:
-      service: media_player.turn_on
-      data:
-        entity_id: media_player.living_room_tv_v
-    turn_off:
-      service: media_player.turn_off
-      data:
-        entity_id: media_player.living_room_tv_v
-    select_source:
-      service: media_player.select_source
-      data_template:
-        entity_id: media_player.living_room_tv_v
-        source: '{{source}}'
+      turn_on:
+        service: media_player.turn_on
+        data:
+          entity_id: media_player.living_room_tv_v
+      turn_off:
+        service: media_player.turn_off
+        data:
+          entity_id: media_player.living_room_tv_v
+      select_source:
+        service: media_player.select_source
+        data_template:
+          entity_id: media_player.living_room_tv_v
+          source: '{{source}}'
     attributes:
       state: media_player.living_room_tv_v
       source: media_player.living_room_tv_v|source
@@ -33,22 +33,22 @@ media_player:
   - platform: universal
     name: Bedroom TV
     children: 
-    - media_player.bedroom_tv_c
-    - media_player.bedroom_tv_v
+      - media_player.bedroom_tv_c
+      - media_player.bedroom_tv_v
     commands:
-    turn_on:
-      service: media_player.turn_on
-      data:
-        entity_id: media_player.bedroom_tv_v
-    turn_off:
-      service: media_player.turn_off
-      data:
-        entity_id: media_player.bedroom_tv_v
-    select_source:
-      service: media_player.select_source
-      data_template:
-        entity_id: media_player.bedroom_tv_v
-        source: '{{source}}'
+      turn_on:
+        service: media_player.turn_on
+        data:
+          entity_id: media_player.bedroom_tv_v
+      turn_off:
+        service: media_player.turn_off
+        data:
+          entity_id: media_player.bedroom_tv_v
+      select_source:
+        service: media_player.select_source
+        data_template:
+          entity_id: media_player.bedroom_tv_v
+          source: '{{source}}'
     attributes:
       state: media_player.bedroom_tv_v
       source: media_player.bedroom_tv_v|source
