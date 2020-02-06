@@ -42,16 +42,6 @@ switch:
     # https://github.com/home-assistant/home-assistant/pull/28830
     # mac_address: !secret WOL_1_mac
 
-  
-
-
-
-panel_custom:
-  - name: zwavegraph2
-    sidebar_title: Z-Wave Graph
-    sidebar_icon: mdi:access-point-network
-    url_path: zwave
-
 logger:
  default: error
     
