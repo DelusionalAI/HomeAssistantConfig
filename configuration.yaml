@@ -1,14 +1,10 @@
-# Welcome to my config file. Its an ugly mess, but will be cleaned up Someday.
+# Welcome to my config file. 
+# If you are wondering why its so empty, its 
+# because all config files have been split into
+# files that do one thing and one thing alone.
 
-# That someday is today my friends. Current in testing
+# Idea inspried if not outright copyed from Franck Nijhof
+# https://github.com/frenck/home-assistant-config
 
-
-
-
-  # This will load all yaml files in the intergartions dir
-  # I hope
-  packages: !include_dir_named integrations
-
-
-
-    
+# Loads all the config files 
+packages: !include_dir_named integrations
