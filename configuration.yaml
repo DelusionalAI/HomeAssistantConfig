@@ -7,4 +7,6 @@
 # https://github.com/frenck/home-assistant-config
 
 # Loads all the config files 
-packages: !include_dir_named integrations
+homeassistant:
+  # Load packages
+  packages: !include_dir_named integrations
