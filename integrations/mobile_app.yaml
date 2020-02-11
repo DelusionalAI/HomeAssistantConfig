@@ -4,4 +4,15 @@
 # https://companion.home-assistant.io/
 
 mobile_app:
+
 ios:
+  push:
+    categories:
+      - name: Rikka_Update
+        identifier: "rikka_update"
+        actions:
+          - identifier: "RIKKA_PICKUP"
+            title: "I Picked Rikka Up"
+          - identifier: "RIKKA_DROPOFF"
+            title: "I Dropped Rikka Off"
+
