@@ -1,0 +1,3 @@
+sensor:
+  - platform: airvisual
+    api_key: !secret air_visual_api
