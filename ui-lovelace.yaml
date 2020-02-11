@@ -4,8 +4,9 @@ views:
     path: default_view
     title: Home
     badges:
-      - entity: binary_sensor.brett_home
-      - entity: binary_sensor.courtney_home
+      - entity: person.brett_daugherty
+      - entity: person.courtney
+      - entity: person.rikka
     cards:
       - entity: weather.dark_sky
         name: Dark Sky - Home
