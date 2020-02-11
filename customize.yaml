@@ -40,3 +40,7 @@ sensor.greenwave_reality_inc_powernode_6_port_power_3:
   icon: mdi:alpha-p-box
 sensor.greenwave_reality_inc_powernode_6_port_power_4:
   icon: mdi:alpha-p-box
+person.rikka:
+  entity_picture: /local/rikka.jpg
+person.brett_daugherty:
+  entity_picture: /local/brett.jpg
