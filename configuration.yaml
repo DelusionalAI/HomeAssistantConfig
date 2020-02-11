@@ -8,5 +8,10 @@
 
 # Loads all the config files 
 homeassistant:
-  # Load packages
+  customize: !include customize.yaml
+  auth_mfa_modules:
+    - type: totp
+      name: Authenticator app
+    - type: notify
+      message: 'Your Home Assistant sign in code is: {}'
   packages: !include_dir_named integrations
